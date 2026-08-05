@@ -12,8 +12,8 @@ class Employee(Base):
     cpf = Column(String(11), unique=True, index=True, nullable=False)
 
     street = Column(String(50), nullable=False)
-    number = Column(String(10), nullable=False)
+    number = Column(Integer, nullable=False)
     city = Column(String(50), nullable=False)
     state = Column(String(2), nullable=False)
-    zip_code = Column(String(8), nullable=False)
+    zip_code = Column(Integer, nullable=False)
     complement = Column(String(50), nullable=False)
