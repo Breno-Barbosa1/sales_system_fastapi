@@ -4,7 +4,6 @@ from app.models.employee import Employee
 from app.schemas.employee import EmployeeCreate, EmployeeUpdate
 from app.security import hash_password
 
-
 def get_employees(db: Session):
     return db.query(Employee).all()
 
@@ -12,6 +11,13 @@ def get_employee_by_id(db: Session, employee_id: int):
     return (
         db.query(Employee)
         .filter(Employee.id == employee_id)
+        .first()
+    )
+
+def get_employee_by_email(db: Session, employee_email: str):
+    return (
+        db.query(Employee)
+        .filter(Employee.email == employee_email)
         .first()
     )
 

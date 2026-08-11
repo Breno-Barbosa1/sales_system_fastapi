@@ -1,13 +1,13 @@
-from fastapi import HTTPException
-
-from sqlalchemy.orm import Session
-
 from decimal import Decimal
+
+from fastapi import HTTPException
+from sqlalchemy.orm import Session
 
 from app.models.product import Product
 from app.models.sale import Sale
 from app.models.sale_item import SaleItem
 from app.schemas.sale import SaleCreate
+
 
 def get_sales(db: Session):
     return db.query(Sale).all()

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app.crud.employee import get_employees, get_employee_by_id, create_employee, update_employee
+from app.crud.employee import get_employees, get_employee_by_id, create_employee, update_employee, get_employee_by_email
 from app.database import get_db
 from app.models.employee import Employee
 from app.schemas.employee import EmployeeCreate, EmployeeUpdate
@@ -20,7 +20,19 @@ def list_employee_by_id(employee_id: int, db: Session = Depends(get_db)):
     if employee is None:
         raise HTTPException(
             status_code = 404,
-            detail= "Employee not found"
+            detail= f"Employee not found for ID: {employee_id}"
+        )
+
+    return employee
+
+@router.get("/email/{employee_email}")
+def list_employee_by_email(employee_email: str, db: Session = Depends(get_db)):
+    employee = get_employee_by_email(db, employee_email)
+
+    if employee is None:
+        raise HTTPException(
+            status_code = 404,
+            detail= f"Employee not found for email: {employee_email}"
         )
 
     return employee
