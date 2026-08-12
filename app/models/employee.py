@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String
 from app.database import Base
+from app.enums.employee_enum import EmployeeRole
 
 class Employee(Base):
     __tablename__ = "employees"
@@ -10,6 +11,7 @@ class Employee(Base):
     password = Column(String, nullable=False)
     email = Column(String(50), unique=True, index=True, nullable=False)
     cpf = Column(String(11), unique=True, index=True, nullable=False)
+    role = Column(String(20), nullable=False, default=EmployeeRole.EMPLOYEE.value)
 
     street = Column(String(50), nullable=False)
     number = Column(Integer, nullable=False)

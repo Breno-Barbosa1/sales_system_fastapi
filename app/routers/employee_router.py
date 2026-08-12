@@ -1,12 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
+from app.auth.dependencies import require_admin, get_current_user
 from app.crud.employee import get_employees, get_employee_by_id, create_employee, update_employee, get_employee_by_email
 from app.database import get_db
 from app.models.employee import Employee
 from app.schemas.employee import EmployeeCreate, EmployeeUpdate
 
-router = APIRouter(prefix="/api/v1/employees", tags=["employees"])
+router = APIRouter(prefix="/api/v1/employees", tags=["employees"], dependencies=[Depends(get_current_user)])
 
 @router.get("/")
 def list_employees(db: Session = Depends(get_db)):
@@ -37,7 +38,7 @@ def list_employee_by_email(employee_email: str, db: Session = Depends(get_db)):
 
     return employee
 
-@router.post("/")
+@router.post("/", dependencies=[Depends(require_admin)])
 def create_employee_data(employee_data: EmployeeCreate, db: Session = Depends(get_db)):
     existing_email = (
         db.query(Employee)
@@ -61,7 +62,7 @@ def create_employee_data(employee_data: EmployeeCreate, db: Session = Depends(ge
 
     return employee
 
-@router.put("/{employee_id}")
+@router.put("/{employee_id}", dependencies=[Depends(require_admin)])
 def update_employee_data(employee_data: EmployeeUpdate, employee_id: int, db: Session = Depends(get_db)):
     employee = update_employee(db, employee_id, employee_data)
     return employee

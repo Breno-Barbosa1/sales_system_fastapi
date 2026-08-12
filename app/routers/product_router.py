@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Response
 from sqlalchemy.orm import Session
 
+from app.auth.dependencies import require_admin, get_current_user
+from app.crud.product import get_products, get_product_by_id, create_product, update_product, delete_product
 from app.database import get_db
 from app.models.product import Product
-
-from app.crud.product import get_products, get_product_by_id, create_product, update_product, delete_product
 from app.schemas.product import ProductCreate
 
-router = APIRouter(prefix="/api/v1/products", tags=["products"])
+router = APIRouter(prefix="/api/v1/products", tags=["products"], dependencies=[Depends(get_current_user)])
 
 @router.get("/")
 def list_products(db: Session = Depends(get_db)):
@@ -26,7 +26,7 @@ def list_product_by_id(product_id: int, db: Session = Depends(get_db)):
 
     return product
 
-@router.post("/")
+@router.post("/", dependencies=[Depends(require_admin)])
 def create_product_data(product_data: ProductCreate, db: Session = Depends(get_db)):
     existing_name = (
         db.query(Product)
@@ -44,12 +44,12 @@ def create_product_data(product_data: ProductCreate, db: Session = Depends(get_d
 
     return product
 
-@router.put("/{product_id}")
+@router.put("/{product_id}", dependencies=[Depends(require_admin)])
 def update_product_data(product_data: ProductCreate, product_id: int, db: Session = Depends(get_db)):
     product = update_product(db, product_id, product_data)
     return product
 
-@router.delete("/{product_id}",  status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{product_id}",  status_code=status.HTTP_204_NO_CONTENT, dependencies=[Depends(require_admin)])
 def delete_product_data(product_id: int, db: Session = Depends(get_db)):
     delete_product(db, product_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

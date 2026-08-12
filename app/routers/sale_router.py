@@ -1,11 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 from sqlalchemy.orm import Session
 
+from app.auth.dependencies import require_admin, get_current_user
 from app.crud.sale import get_sales, get_sale_by_id, create_sale, delete_sale
 from app.database import get_db
 from app.schemas.sale import SaleCreate, SaleResponse
 
-router = APIRouter(prefix="/api/v1/sales", tags=["Sales"])
+router = APIRouter(prefix="/api/v1/sales", tags=["Sales"], dependencies=[Depends(get_current_user)])
 
 @router.get("/", response_model=list[SaleResponse])
 def list_sales(db: Session = Depends(get_db)):
@@ -31,7 +32,7 @@ def create_sale_data(sale_data: SaleCreate, db: Session = Depends(get_db)):
 
     return sale
 
-@router.delete("/{sale_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/{sale_id}", status_code=status.HTTP_204_NO_CONTENT, dependencies=[Depends(require_admin)])
 def delete_sale_data(sale_id: int, db: Session = Depends(get_db)):
     delete_sale(db, sale_id)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

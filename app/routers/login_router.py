@@ -5,7 +5,7 @@ from app.crud.employee import get_employee_by_email
 from app.database import get_db
 from app.schemas.auth import TokenResponse, LoginRequest
 from app.security import verify_password
-from app.services.auth import create_access_token
+from app.auth.jwt import create_access_token
 
 router = APIRouter(prefix="/api/v1/auth", tags=["login"])
 
@@ -30,7 +30,7 @@ def login(login_data: LoginRequest, db: Session = Depends(get_db)):
         )
 
     access_token = create_access_token({
-        "sub": int(employee.id),
+        "sub": str(employee.id),
         "email": employee.email
     })
 
