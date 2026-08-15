@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
 from app.database import Base
 from app.enums.employee_enum import EmployeeRole
 
@@ -12,6 +12,7 @@ class Employee(Base):
     email = Column(String(50), unique=True, index=True, nullable=False)
     cpf = Column(String(11), unique=True, index=True, nullable=False)
     role = Column(String(20), nullable=False, default=EmployeeRole.EMPLOYEE.value)
+    is_active = Column(Boolean, nullable=False, default=True)
 
     street = Column(String(50), nullable=False)
     number = Column(Integer, nullable=False)

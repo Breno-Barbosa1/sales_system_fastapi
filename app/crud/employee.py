@@ -46,15 +46,16 @@ def update_employee(db: Session, employee_id: int, employee_data: EmployeeUpdate
     if employee is None:
         return None
 
-    employee.first_name= employee_data.first_name,
-    employee.last_name= employee_data.last_name,
-    employee.password=  hash_password(employee_data.password),
-    employee.email= employee_data.email,
-    employee.street= employee_data.address.street,
-    employee.number= employee_data.address.number,
-    employee.city= employee_data.address.city,
-    employee.state= employee_data.address.state,
-    employee.zip_code= employee_data.address.zip_code,
+    employee.first_name= employee_data.first_name
+    employee.last_name= employee_data.last_name
+    employee.password=  hash_password(employee_data.password)
+    employee.email= employee_data.email
+    employee.is_active= employee_data.is_active
+    employee.street= employee_data.address.street
+    employee.number= employee_data.address.number
+    employee.city= employee_data.address.city
+    employee.state= employee_data.address.state
+    employee.zip_code= employee_data.address.zip_code
     employee.complement= employee_data.address.complement
 
     db.add(employee)

@@ -22,3 +22,4 @@ class EmployeeUpdate(BaseModel):
     password: str
     email: str
     address: Address
+    is_active: bool
