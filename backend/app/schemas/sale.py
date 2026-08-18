@@ -6,7 +6,6 @@ from pydantic import BaseModel, ConfigDict
 
 from app.schemas.sale_item import SaleItemCreate, SaleItemResponse
 
-
 class SaleCreate(BaseModel):
     employee_id: int
     sale_items: List[SaleItemCreate]
