@@ -1,8 +1,11 @@
+from datetime import date
+from typing import Optional
+
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 from sqlalchemy.orm import Session
 
 from app.auth.dependencies import require_admin, get_current_user
-from app.crud.sale import get_sales, get_sale_by_id, create_sale, delete_sale
+from app.crud.sale import get_sales, get_sale_by_id, create_sale, delete_sale, get_sales_by_day
 from app.database import get_db
 from app.schemas.sale import SaleCreate, SaleResponse
 
@@ -24,6 +27,14 @@ def list_sale_by_id(sale_id: int, db: Session = Depends(get_db)):
         )
 
     return sale
+
+@router.get("/by-date/", response_model=list[SaleResponse])
+def list_sale_by_day(target_date: Optional[date] = None, db: Session = Depends(get_db)):
+    if target_date is None:
+        target_date = date.today()
+
+    sales = get_sales_by_day(db, target_date)
+    return sales
 
 @router.post("/", response_model=SaleResponse)
 def create_sale_data(sale_data: SaleCreate, db: Session = Depends(get_db)):

@@ -1,4 +1,5 @@
 from decimal import Decimal
+from datetime import date, datetime, timedelta
 
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
@@ -8,7 +9,6 @@ from app.models.sale import Sale
 from app.models.sale_item import SaleItem
 from app.schemas.sale import SaleCreate
 
-
 def get_sales(db: Session):
     return db.query(Sale).all()
 
@@ -17,6 +17,17 @@ def get_sale_by_id(db: Session, sale_id: int):
         db.query(Sale)
         .filter(Sale.id == sale_id)
         .first()
+    )
+
+def get_sales_by_day(db: Session, target_date: date):
+    day_start = datetime.combine(target_date, datetime.min.time())
+    day_end = day_start + timedelta(days=1)
+
+    return (
+        db.query(Sale)
+        .filter(Sale.created_at >= day_start)
+        .filter(Sale.created_at < day_end)
+        .all()
     )
 
 def create_sale(db: Session, sale_data: SaleCreate):
