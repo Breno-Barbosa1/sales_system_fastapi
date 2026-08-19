@@ -18,14 +18,25 @@ function Home() {
     }
 
     useEffect(() => {
-        const fetchSalesData = async () => {
-            const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
 
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+
+        const fetchSalesData = async () => {
             try {
                 const response = await fetch("http://127.0.0.1:8000/api/v1/sales", {
                     method: "GET",
                     headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
                 })
+
+                if (response.status === 401) {
+                localStorage.removeItem("token");
+                navigate("/login");
+                return;
+                }
 
                 const data = await response.json()
                 setSalesData(data)
