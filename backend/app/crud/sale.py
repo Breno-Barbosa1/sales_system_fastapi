@@ -9,8 +9,11 @@ from app.models.sale import Sale
 from app.models.sale_item import SaleItem
 from app.schemas.sale import SaleCreate
 
-def get_sales(db: Session):
-    return db.query(Sale).all()
+from fastapi_pagination import Page
+from fastapi_pagination.ext.sqlalchemy import paginate
+
+def get_sales(db: Session) -> Page[Sale]:
+    return paginate(db, db.query(Sale).order_by(Sale.created_at))
 
 def get_sale_by_id(db: Session, sale_id: int):
     return (

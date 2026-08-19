@@ -40,7 +40,7 @@ function Home() {
                 }
 
                 const data = await response.json()
-                setSalesData(data)
+                setSalesData(data.items)
 
             } catch (error) {
                 console.error('Error fetching sales:', error);
@@ -90,7 +90,7 @@ function Home() {
                                         <td>{sale.created_at}</td>
                                         <td>
                                             {sale.sale_items.map((sale_item) => (
-                                                <div key={sale_item.product_id}>
+                                                <div key={sale_item.id}>
                                                     <strong>Produto: {sale_item.product.product_name}</strong> - {sale_item.quantity} x {sale_item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                                                 </div>
                                             ))}

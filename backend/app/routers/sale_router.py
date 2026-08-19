@@ -2,6 +2,7 @@ from datetime import date
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Response, status
+from fastapi_pagination import Page
 from sqlalchemy.orm import Session
 
 from app.auth.dependencies import require_admin, get_current_user
@@ -11,7 +12,7 @@ from app.schemas.sale import SaleCreate, SaleResponse
 
 router = APIRouter(prefix="/api/v1/sales", tags=["Sales"], dependencies=[Depends(get_current_user)])
 
-@router.get("/", response_model=list[SaleResponse])
+@router.get("/", response_model=Page[SaleResponse])
 def list_sales(db: Session = Depends(get_db)):
     sales = get_sales(db)
     return sales

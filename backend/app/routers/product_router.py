@@ -1,15 +1,16 @@
 from fastapi import APIRouter, Depends, HTTPException, status, Response
+from fastapi_pagination import Page
 from sqlalchemy.orm import Session
 
 from app.auth.dependencies import require_admin, get_current_user
 from app.crud.product import get_products, get_product_by_id, create_product, update_product, delete_product
 from app.database import get_db
 from app.models.product import Product
-from app.schemas.product import ProductCreate
+from app.schemas.product import ProductCreate, ProductResponse
 
 router = APIRouter(prefix="/api/v1/products", tags=["products"], dependencies=[Depends(get_current_user)])
 
-@router.get("/")
+@router.get("/", response_model=Page[ProductResponse])
 def list_products(db: Session = Depends(get_db)):
     products = get_products(db)
     return products

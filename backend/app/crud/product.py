@@ -1,10 +1,13 @@
+from fastapi_pagination import Page
+from fastapi_pagination.ext.sqlalchemy import paginate
 from sqlalchemy.orm import Session
 
 from app.models.product import Product
 from app.schemas.product import ProductCreate
 
-def get_products(db: Session):
-    return db.query(Product).all()
+
+def get_products(db: Session) -> Page[Product]:
+    return paginate(db, db.query(Product))
 
 def get_product_by_id(db: Session, product_id: int):
     return (
