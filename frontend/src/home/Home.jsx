@@ -36,6 +36,7 @@ function Home() {
                 localStorage.removeItem("token");
                 navigate("/login");
                 return;
+
                 }
 
                 const data = await response.json()
@@ -77,6 +78,7 @@ function Home() {
                                     <th>ID</th>
                                     <th>ID_Funcionário</th>
                                     <th>Data</th>
+                                    <th>Produtos</th>
                                     <th>Valor Total</th>
                                 </tr>
                             </thead>
@@ -86,6 +88,13 @@ function Home() {
                                         <td>{sale.id}</td>
                                         <td>{sale.employee_id}</td>
                                         <td>{sale.created_at}</td>
+                                        <td>
+                                            {sale.sale_items.map((sale_item) => (
+                                                <div key={sale_item.product_id}>
+                                                    <strong>Produto: {sale_item.product.product_name}</strong> - {sale_item.quantity} x {sale_item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                                </div>
+                                            ))}
+                                        </td>
                                         <td>
                                             {sale.total_amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                                         </td>
