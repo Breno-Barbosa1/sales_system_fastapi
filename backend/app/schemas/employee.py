@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 class Address(BaseModel):
     street: str
@@ -23,3 +23,14 @@ class EmployeeUpdate(BaseModel):
     email: str
     address: Address
     is_active: bool
+
+class EmployeeResponse(BaseModel):
+    id: int
+    first_name: str
+    last_name: str
+    email: str
+    cpf: str
+    address: Address
+    is_active: bool
+
+    model_config = ConfigDict(from_attributes=True)

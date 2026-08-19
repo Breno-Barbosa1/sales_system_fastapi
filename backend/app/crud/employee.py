@@ -1,11 +1,14 @@
+from fastapi_pagination import Page
 from sqlalchemy.orm import Session
 
 from app.models.employee import Employee
 from app.schemas.employee import EmployeeCreate, EmployeeUpdate
 from app.security import hash_password
 
-def get_employees(db: Session):
-    return db.query(Employee).all()
+from fastapi_pagination.ext.sqlalchemy import paginate
+
+def get_employees(db: Session) -> Page[Employee]:
+    return paginate(db, db.query(Employee))
 
 def get_employee_by_id(db: Session, employee_id: int):
     return (

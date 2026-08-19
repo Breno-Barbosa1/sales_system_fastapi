@@ -23,3 +23,14 @@ class Employee(Base):
 
     def __repr__(self):
         return f"Employee ID: {self.id} - Employee Name: {self.first_name} + {self.last_name}"
+
+    @property
+    def address(self):
+        return {
+            "street": self.street,
+            "number": self.number,
+            "city": self.city,
+            "state": self.state,
+            "zip_code": self.zip_code,
+            "complement": self.complement
+        }

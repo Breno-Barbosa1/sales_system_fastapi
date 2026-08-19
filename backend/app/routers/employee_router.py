@@ -1,15 +1,16 @@
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi_pagination import Page
 from sqlalchemy.orm import Session
 
 from app.auth.dependencies import require_admin, get_current_user
 from app.crud.employee import get_employees, get_employee_by_id, create_employee, update_employee, get_employee_by_email
 from app.database import get_db
 from app.models.employee import Employee
-from app.schemas.employee import EmployeeCreate, EmployeeUpdate
+from app.schemas.employee import EmployeeCreate, EmployeeUpdate, EmployeeResponse
 
 router = APIRouter(prefix="/api/v1/employees", tags=["employees"], dependencies=[Depends(get_current_user)])
 
-@router.get("/")
+@router.get("/", response_model=Page[EmployeeResponse])
 def list_employees(db: Session = Depends(get_db)):
     employees = get_employees(db)
     return employees
