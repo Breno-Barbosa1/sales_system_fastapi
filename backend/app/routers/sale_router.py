@@ -2,7 +2,7 @@ from datetime import date
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Response, status
-from fastapi_pagination import Page
+from fastapi_pagination import Page, Params
 from sqlalchemy.orm import Session
 
 from app.auth.dependencies import require_admin, get_current_user
@@ -29,12 +29,12 @@ def list_sale_by_id(sale_id: int, db: Session = Depends(get_db)):
 
     return sale
 
-@router.get("/by-date/", response_model=list[SaleResponse])
-def list_sale_by_day(target_date: Optional[date] = None, db: Session = Depends(get_db)):
+@router.get("/by-date/", response_model=Page[SaleResponse])
+def list_sale_by_day(target_date: Optional[date] = None, db: Session = Depends(get_db), params: Params = Depends()):
     if target_date is None:
         target_date = date.today()
 
-    sales = get_sales_by_day(db, target_date)
+    sales = get_sales_by_day(db, target_date, params)
     return sales
 
 @router.post("/", response_model=SaleResponse)

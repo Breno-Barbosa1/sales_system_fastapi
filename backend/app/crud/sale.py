@@ -1,7 +1,8 @@
 from decimal import Decimal
 from datetime import date, datetime, timedelta
 
-from fastapi import HTTPException
+from fastapi import HTTPException, Depends
+from sqlalchemy import desc
 from sqlalchemy.orm import Session
 
 from app.models.product import Product
@@ -9,7 +10,7 @@ from app.models.sale import Sale
 from app.models.sale_item import SaleItem
 from app.schemas.sale import SaleCreate
 
-from fastapi_pagination import Page
+from fastapi_pagination import Page, Params
 from fastapi_pagination.ext.sqlalchemy import paginate
 
 def get_sales(db: Session) -> Page[Sale]:
@@ -22,16 +23,18 @@ def get_sale_by_id(db: Session, sale_id: int):
         .first()
     )
 
-def get_sales_by_day(db: Session, target_date: date):
+def get_sales_by_day(db: Session, target_date: date, params: Params = Depends()) -> Page[Sale]:
     day_start = datetime.combine(target_date, datetime.min.time())
     day_end = day_start + timedelta(days=1)
 
-    return (
+    query = (
         db.query(Sale)
         .filter(Sale.created_at >= day_start)
         .filter(Sale.created_at < day_end)
-        .all()
+        .order_by(desc(Sale.created_at))
     )
+
+    return paginate (db, query, params)
 
 def create_sale(db: Session, sale_data: SaleCreate):
     total = Decimal("0.00")

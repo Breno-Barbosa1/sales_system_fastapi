@@ -198,6 +198,59 @@
     background-color: #f0f7ff; /* Fundo azul bem clarinho ao passar o mouse */
 }
 
+/* =========================================
+   8. PAGINAÇÃO
+   ========================================= */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #edf2f7;
+}
+
+.pagination-btn {
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 2px solid #0070f0;
+    border-radius: 12px;
+    color: #0070f0;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #0070f0 0%, #33c3f0 100%);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(51, 195, 240, 0.3);
+    transform: translateY(-2px);
+}
+
+.pagination-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: #a0aec0;
+    color: #718096;
+}
+
+.pagination-info {
+    color: #4a5568;
+    font-size: 0.95rem;
+    font-weight: 600;
+    min-width: 110px;
+    text-align: center;
+}
+
 /* Responsividade da tabela para telas menores */
 @media (max-width: 768px) {
     .sales-dashboard {
