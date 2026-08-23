@@ -1,6 +1,6 @@
 import './Home.css'
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
@@ -8,12 +8,9 @@ function Home() {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const pageSize = 10;
+    const hasSalesData = salesData.length > 0;
 
     const navigate = useNavigate();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-    }
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -122,17 +119,23 @@ function Home() {
                             <span className="pagination-info">
                                 Página {page} de {totalPages}
                             </span>
-                            <button
-                                className="pagination-btn"
-                                onClick={() => setPage(page + 1)}
-                                disabled={page === totalPages}
-                            >
-                                Próxima →
-                            </button>
+                            {hasSalesData ? (
+                                <button
+                                    className="pagination-btn"
+                                    onClick={() => setPage(page + 1)}
+                                    disabled={page === totalPages}
+                                >
+                                    Próxima →
+                                </button>
+                            ) : (
+                                <button className="pagination-btn" disabled>
+                                    Próxima →
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     );
 }
 
