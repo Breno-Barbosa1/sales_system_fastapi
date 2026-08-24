@@ -13,6 +13,7 @@ class ProductResponse(BaseModel):
     id: int
     product_name: str
     selling_price: Decimal
+    price_at_purchase: Decimal
     stock_quantity: int
 
     model_config = ConfigDict(from_attributes=True)

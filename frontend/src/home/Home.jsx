@@ -9,6 +9,9 @@ function Home() {
     const [totalPages, setTotalPages] = useState(1);
     const pageSize = 10;
     const hasSalesData = salesData.length > 0;
+    const handleCreateSale = () => {
+        navigate('/create-sale');
+    }
 
     const navigate = useNavigate();
 
@@ -56,7 +59,7 @@ function Home() {
                 </div>
                 
                 <ul className="nav-links">
-                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="/products">Produtos</a></li>
                     <li><a href="#vendas">Vendas</a></li>
                 </ul>
                 
@@ -132,6 +135,10 @@ function Home() {
                                     Próxima →
                                 </button>
                             )}
+
+                            <button className="create-sale-btn" onClick={handleCreateSale}>
+                                + Nova Venda
+                            </button>
                         </div>
                     </div>
                 </div>

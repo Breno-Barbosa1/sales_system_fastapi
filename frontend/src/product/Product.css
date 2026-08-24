@@ -1,0 +1,94 @@
+/* =========================================
+   PRODUCT PAGE
+   ========================================= */
+
+.product-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.product-dashboard-header h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #333333;
+    font-size: 1.6rem;
+}
+
+.product-dashboard-header p {
+    margin: 0;
+    color: #718096;
+    font-size: 0.95rem;
+}
+
+/* =========================================
+   BOTÃO NOVO PRODUTO
+   ========================================= */
+
+.create-product-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background-color: #28a745;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.create-product-btn:hover {
+    background-color: #218838;
+}
+
+.create-product-btn:active {
+    transform: translateY(1px);
+}
+
+/* =========================================
+   NOME DO PRODUTO
+   ========================================= */
+
+.product-name {
+    font-weight: 600;
+    color: #333333 !important;
+}
+
+/* =========================================
+   ESTOQUE
+   ========================================= */
+
+.stock-badge {
+    display: inline-block;
+    min-width: 35px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    background-color: #e6f7ed;
+    color: #218838;
+    font-weight: 600;
+    text-align: center;
+}
+
+.low-stock {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .product-dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .create-product-btn {
+        width: 100%;
+    }
+
+}
