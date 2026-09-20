@@ -1,6 +1,5 @@
-/* 1. CONTAINER DA HOME - Ignora o body centralizado */
 .home-card {
-    position: absolute; /* Ignora o flexbox do body */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
@@ -9,8 +8,7 @@
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-/* 2. BARRA DE NAVEGAÇÃO */
-.nav-bar {
+.nav-bar-home {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,7 +19,6 @@
     width: 100%;
 }
 
-/* 3. LOGOTIPO (Ocupa o espaço da esquerda) */
 .logo {
     flex: 1;
     display: flex;
@@ -38,8 +35,7 @@
     -webkit-text-fill-color: transparent;
 }
 
-/* 4. LINKS (Ocupam o espaço do meio, perfeitamente centralizados) */
-.nav-links {
+.nav-links-home {
     flex: 2;
     list-style: none;
     display: flex;
@@ -49,7 +45,7 @@
     padding: 0;
 }
 
-.nav-links li a {
+.nav-links-home li a {
     text-decoration: none;
     color: #333333;
     font-size: 1.05rem;
@@ -59,7 +55,7 @@
     padding-bottom: 5px;
 }
 
-.nav-links li a::after {
+.nav-links-home li a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -71,16 +67,15 @@
     border-radius: 2px;
 }
 
-.nav-links li a:hover {
+.nav-links-home li a:hover {
     color: #0070f0;
 }
 
-.nav-links li a:hover::after {
+.nav-links-home li a:hover::after {
     width: 100%;
 }
 
-/* 5. AÇÕES (Ocupam o espaço da direita) */
-.nav-actions {
+.nav-actions-home {
     flex: 1;
     display: flex;
     justify-content: flex-end;
@@ -110,9 +105,8 @@
     transform: translateY(0);
 }
 
-/* 6. RESPONSIVIDADE */
 @media (max-width: 768px) {
-    .nav-bar {
+    .nav-bar-home {
         padding: 15px 20px;
     }
     .logo {
@@ -121,14 +115,14 @@
     .logo h1 {
         font-size: 1.4rem;
     }
-    .nav-links {
+    .nav-links-home {
         flex: auto;
         gap: 15px;
     }
-    .nav-links li a {
+    .nav-links-home li a {
         font-size: 0.95rem;
     }
-    .nav-actions {
+    .nav-actions-home {
         flex: auto;
     }
     .logout-btn {
@@ -136,42 +130,38 @@
     }
 }
 
-/* =========================================
-   7. PAINEL DE VENDAS E TABELA (NOVOS)
-   ========================================= */
-
-.sales-dashboard {
+.home-sales-dashboard {
     padding: 40px 50px;
     box-sizing: border-box;
     display: flex;
-    justify-content: center; /* Centraliza o conteúdo na tela */
+    justify-content: center;
 }
 
-.dashboard-content {
+.home-sales-dashboard-content {
     background-color: #ffffff;
     padding: 30px 40px;
-    border-radius: 16px; /* Acompanha o design arredondado do botão */
-    box-shadow: 0 4px 15px rgba(0, 112, 240, 0.05); /* Sombra suave acompanhando o tom do tema */
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 112, 240, 0.05);
     width: 100%;
-    max-width: 1100px;
+    max-width: 1300px;
+    box-sizing: border-box;
 }
 
-.dashboard-content h2 {
+.home-sales-dashboard-content h2 {
     margin-top: 0;
     margin-bottom: 25px;
     color: #333333;
     font-size: 1.6rem;
 }
 
-/* Estilos da Tabela */
-.vendas-table {
+.home-sales-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.vendas-table th {
+.home-sales-table th {
     background-color: #f8fafc;
-    color: #0070f0; /* Cor azul do seu tema para destacar o cabeçalho */
+    color: #0070f0;
     font-weight: bold;
     text-align: left;
     padding: 14px 20px;
@@ -181,7 +171,7 @@
     letter-spacing: 0.5px;
 }
 
-.vendas-table td {
+.home-sales-table td {
     padding: 16px 20px;
     text-align: left;
     border-bottom: 1px solid #edf2f7;
@@ -189,18 +179,13 @@
     font-size: 0.95rem;
 }
 
-/* Efeito ao passar o mouse nas linhas da tabela */
-.vendas-table tbody tr {
+.home-sales-table tbody tr {
     transition: background-color 0.2s ease;
 }
 
-.vendas-table tbody tr:hover {
-    background-color: #f0f7ff; /* Fundo azul bem clarinho ao passar o mouse */
+.home-sales-table tbody tr:hover {
+    background-color: #f0f7ff;
 }
-
-/* =========================================
-   8. PAGINAÇÃO
-   ========================================= */
 
 .pagination {
     display: flex;
@@ -272,17 +257,16 @@
     transform: translateY(1px);
 }
 
-/* Responsividade da tabela para telas menores */
 @media (max-width: 768px) {
-    .sales-dashboard {
+    .home-sales-dashboard {
         padding: 20px;
     }
-    .dashboard-content {
+    .home-sales-dashboard-content {
         padding: 20px;
-        overflow-x: auto; /* Adiciona scroll horizontal se a tabela não couber na tela */
+        overflow-x: auto;
     }
-    .vendas-table th, 
-    .vendas-table td {
+    .home-sales-table th, 
+    .home-sales-table td {
         padding: 12px 15px;
     }
 }

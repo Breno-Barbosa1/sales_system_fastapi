@@ -50,26 +50,22 @@ function Product() {
     }, [page, navigate]);
 
     return (
-        <div className="home-card">
-
-            {/* NAVBAR */}
-            <nav className="nav-bar">
-
+        <div className="products-card">
+            <nav className="nav-bar-products">
                 <div className="logo">
                     <h1>Sistema de Vendas</h1>
                 </div>
-
-                <ul className="nav-links">
+                <ul className="nav-links-products">
                     <li>
-                        <a href="/products">Produtos</a>
+                        <a href="/products">Lista de Produtos</a>
                     </li>
 
                     <li>
-                        <a href="/">Vendas</a>
+                        <a href="/">Painel de Vendas</a>
                     </li>
                 </ul>
 
-                <div className="nav-actions">
+                <div className="nav-actions-products">
                     <button
                         className="logout-btn"
                         onClick={handleLogout}
@@ -80,8 +76,8 @@ function Product() {
 
             </nav>
 
-            <div className="sales-dashboard">
-                <div className="dashboard-content">
+            <div className="products-dashboard">
+                <div className="products-dashboard-content">
                     <div className="product-dashboard-header">
                         <div>
                             <h2>Painel de Produtos</h2>
@@ -89,7 +85,7 @@ function Product() {
                         </div>
                     </div>
 
-                    <table className="vendas-table">
+                    <table className="products-table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -126,15 +122,7 @@ function Product() {
                                             })}
                                         </td>
                                         <td>
-                                            <span
-                                                className={
-                                                    product.stock_quantity <= 5
-                                                        ? "stock-badge low-stock"
-                                                        : "stock-badge"
-                                                }
-                                            >
-                                                {product.stock_quantity}
-                                            </span>
+                                            <span className="stock-badge">{product.stock_quantity}</span>
                                         </td>
                                     </tr>
                                 ))

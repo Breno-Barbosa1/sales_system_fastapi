@@ -16,6 +16,11 @@ def get_product_by_id(db: Session, product_id: int):
         .first()
     )
 
+def get_product_by_name(db: Session, product_name: str) -> Page[Product]:
+    return paginate(db, db.query(Product)
+        .filter(Product.product_name.ilike(f"%{product_name}%"))
+    )
+
 def create_product(db: Session, product_data: ProductCreate):
     product = Product(
         product_name= product_data.product_name,

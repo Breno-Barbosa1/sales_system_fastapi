@@ -53,27 +53,26 @@ function Home() {
 
     return (
         <div className="home-card">
-            <nav className="nav-bar">
+            <nav className="nav-bar-home">
                 <div className="logo">
                     <h1>Sistema de Vendas</h1>
                 </div>
-                
-                <ul className="nav-links">
-                    <li><a href="/products">Produtos</a></li>
-                    <li><a href="#vendas">Vendas</a></li>
+                <ul className="nav-links-home">
+                    <li><a href="/products">Lista de Produtos</a></li>
+                    <li><a href="#vendas">Painel de Vendas</a></li>
                 </ul>
                 
-                <div className="nav-actions">
+                <div className="nav-actions-home">
                     <button className="logout-btn" onClick={handleLogout}>
                         Sair
                     </button>
                 </div>
             </nav>
             
-            <div className="sales-dashboard">
-                <div className="dashboard-content">
+            <div className="home-sales-dashboard">
+                <div className="home-sales-dashboard-content">
                     <h2>Painel de Vendas</h2>
-                    <table className="vendas-table">
+                    <table className="home-sales-table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -93,12 +92,12 @@ function Home() {
                                             <td>
                                                 {sale.sale_items.map((sale_item) => (
                                                     <div key={sale_item.id}>
-                                                        <strong>Produto: {sale_item.product.product_name}</strong> - {sale_item.quantity} x {sale_item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                                        <strong>Produto: {sale_item.product.product_name}</strong> - {sale_item.quantity} x R$ {sale_item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                                                     </div>
                                                 ))}
                                             </td>
                                             <td>
-                                                {sale.total_amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                                R$ {sale.total_amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                                             </td>
                                         </tr>
                                     ))

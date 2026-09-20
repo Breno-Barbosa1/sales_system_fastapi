@@ -3,7 +3,7 @@ from fastapi_pagination import Page
 from sqlalchemy.orm import Session
 
 from app.auth.dependencies import require_admin, get_current_user
-from app.crud.product import get_products, get_product_by_id, create_product, update_product, delete_product
+from app.crud.product import get_products, get_product_by_id, get_product_by_name, create_product, update_product, delete_product
 from app.database import get_db
 from app.models.product import Product
 from app.schemas.product import ProductCreate, ProductResponse
@@ -26,6 +26,11 @@ def list_product_by_id(product_id: int, db: Session = Depends(get_db)):
         )
 
     return product
+
+@router.get("/search/{product_name}", response_model=Page[ProductResponse])
+def list_product_by_name(product_name: str, db: Session = Depends(get_db)):
+    products = get_product_by_name(db, product_name)
+    return products
 
 @router.post("/", dependencies=[Depends(require_admin)])
 def create_product_data(product_data: ProductCreate, db: Session = Depends(get_db)):
