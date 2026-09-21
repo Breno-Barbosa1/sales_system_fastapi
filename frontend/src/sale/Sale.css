@@ -1,0 +1,215 @@
+.add-sale-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh; 
+    background-color: #f0f4f8; 
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.nav-bar-sales {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 112, 240, 0.08);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.nav-links-sales {
+    flex: 2;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links-sales li a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links-sales li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(135deg, #0070f0 0%, #33c3f0 100%);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-links-sales li a:hover {
+    color: #0070f0;
+}
+
+.nav-links-sales li a:hover::after {
+    width: 100%;
+}
+
+.nav-actions-sales {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logout-btn {
+    padding: 10px 24px;
+    background-color: transparent;
+    border: 2px solid #0070f0;
+    border-radius: 12px;
+    color: #0070f0;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(135deg, #0070f0 0%, #33c3f0 100%);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(51, 195, 240, 0.3);
+    transform: translateY(-2px);
+}
+
+.logout-btn:active {
+    transform: translateY(0);
+}
+
+.sales-panels {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 45px;
+    padding: 40px 50px;
+    box-sizing: border-box;
+    align-items: stretch;
+}
+
+.sales-dashboard {
+    padding: 0;
+    min-width: 0;
+}
+
+.current-sale-items-dashboard {
+    padding: 0;
+    min-width: 0;
+}
+
+.sales-dashboard-content,
+.current-sale-items-content {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 112, 240, 0.05);
+
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+}
+
+.sales-dashboard-content h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #333333;
+    font-size: 1.6rem;
+}
+
+.add-sales-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.add-sales-table th {
+    background-color: #f8fafc;
+    color: #0070f0;
+    font-weight: bold;
+    text-align: left;
+    padding: 14px 20px;
+    border-bottom: 2px solid #e2e8f0;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.add-sales-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid #edf2f7;
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+.add-sales-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.add-sales-table tbody tr:hover {
+    background-color: #f0f7ff;
+}
+
+.sale-items-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sale-items-table th {
+    background-color: #f8fafc;
+    color: #0070f0;
+    font-weight: bold;
+    text-align: left;
+    padding: 14px 20px;
+    border-bottom: 2px solid #e2e8f0;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.sale-items-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid #edf2f7;
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+.sale-items-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.sale-items-table tbody tr:hover {
+    background-color: #f0f7ff;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .sales-dashboard {
+        padding: 20px;
+    }
+    .sales-dashboard-content {
+        padding: 20px;
+        overflow-x: auto;
+    }
+    .add-sales-table th, 
+    .add-sales-table td {
+        padding: 12px 15px;
+    }
+}
