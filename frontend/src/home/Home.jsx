@@ -91,7 +91,7 @@ function Home() {
                                             <td>
                                                 {sale.sale_items.map((sale_item) => (
                                                     <div key={sale_item.id}>
-                                                        <strong>Produto: {sale_item.product.product_name}</strong> - {sale_item.quantity} x R$ {sale_item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                                        <strong>{sale_item.product.product_name}</strong> - {sale_item.quantity} x R$ {sale_item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                                                     </div>
                                                 ))}
                                             </td>
