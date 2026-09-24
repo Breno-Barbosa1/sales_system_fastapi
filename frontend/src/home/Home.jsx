@@ -87,7 +87,8 @@ function Home() {
                                         <tr key={sale.id}>
                                             <td>{sale.id}</td>
                                             <td>{sale.employee_id}</td>
-                                            <td>{sale.created_at}</td>
+                                            <td>{new Date(sale.created_at).toLocaleDateString("pt-BR")}{" "}
+                                                {new Date(sale.created_at).toLocaleTimeString("pt-BR")}</td>
                                             <td>
                                                 {sale.sale_items.map((sale_item) => (
                                                     <div key={sale_item.id}>
