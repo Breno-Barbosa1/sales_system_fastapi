@@ -115,14 +115,22 @@ function Sale() {
                                         <td>
                                             <button onClick={() => {
                                                 if (product.stock_quantity > 0) {
+                                                    setSearchedProducts((products) =>
+                                                    products.map((p) =>
+                                                        p.id === product.id
+                                                            ? { ...p, stock_quantity: p.stock_quantity - 1 }
+                                                            : p
+                                                    )
+                                                );
+
                                                     setSaleItems((saleItems) => {
                                                         const existingItem = saleItems.find(
-                                                            (item) => item.id === product.id
+                                                            (item) => item.product_id === product.id
                                                         )
 
                                                         if (existingItem) {
                                                             return saleItems.map((item) =>
-                                                                item.id == product.id
+                                                                item.product_id == product.id
                                                                     ? {...item, quantity: item.quantity + 1}
                                                                     : item 
                                                             )       
