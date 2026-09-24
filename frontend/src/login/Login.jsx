@@ -21,7 +21,10 @@ function Login() {
 
             const data = await response.json()
             const token = data.access_token
+            const employeeId = data.employee_id
+
             localStorage.setItem("token", token)
+            localStorage.setItem("employeeId", employeeId)
             navigate('/');
         } catch (error) {
             console.error('Error during login:', error);

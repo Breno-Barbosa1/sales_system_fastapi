@@ -8,6 +8,8 @@ from app.schemas.product import ProductResponse
 class SaleItemCreate(BaseModel):
     product_id: int
     quantity: int
+    product_name: str
+    price: Decimal
 
 class SaleItemResponse(BaseModel):
     id: int

@@ -68,7 +68,6 @@ function Home() {
                     </button>
                 </div>
             </nav>
-            
             <div className="home-sales-dashboard">
                 <div className="home-sales-dashboard-content">
                     <h2>Painel de Vendas</h2>
@@ -145,4 +144,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Home
