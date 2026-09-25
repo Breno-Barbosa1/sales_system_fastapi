@@ -5,9 +5,8 @@ from sqlalchemy.orm import Session
 from app.models.product import Product
 from app.schemas.product import ProductCreate
 
-
 def get_products(db: Session) -> Page[Product]:
-    return paginate(db, db.query(Product))
+    return paginate(db, db.query(Product).order_by(Product.id.asc()))
 
 def get_product_by_id(db: Session, product_id: int):
     return (
