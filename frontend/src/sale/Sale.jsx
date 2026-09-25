@@ -32,7 +32,7 @@ function Sale() {
         )})
 
         const data = await response.json()
-        console.log(data)
+        alert("Venda finalizada com sucesso!")
         navigate("/")
     } catch (error) {
         console.log("Error while creating sale. error: ", error)
@@ -122,7 +122,6 @@ function Sale() {
                                                             : p
                                                     )
                                                 );
-
                                                     setSaleItems((saleItems) => {
                                                         const existingItem = saleItems.find(
                                                             (item) => item.product_id === product.id
