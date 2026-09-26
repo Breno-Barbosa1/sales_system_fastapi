@@ -25,13 +25,22 @@ function Sale() {
 
   const finishSale = async () => {
     try {
+        if (saleItems.length == 0) {
+            alert("Sua venda não possui produtos! Os adicione para continuar.")
+            return
+        }
+
         const response = await fetch(`http://127.0.0.1:8000/api/v1/sales`, {
             method: "POST",
             headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
             body: JSON.stringify({sale_items: saleItems, employee_id: localStorage.getItem("employeeId")}
         )})
 
-        const data = await response.json()
+        if (response.status == 400 || response.status == 422) {
+            alert("Verifique as informações da venda!")
+            return
+        }
+
         alert("Venda finalizada com sucesso!")
         navigate("/")
     } catch (error) {
