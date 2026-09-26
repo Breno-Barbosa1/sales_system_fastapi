@@ -1,0 +1,163 @@
+.admin-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #f0f4f8; 
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
+.logo {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0070f0 0%, #33c3f0 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-bar-admin-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 112, 240, 0.08);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.nav-links-admin-panel {
+    flex: 2;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links-admin-panel li a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-links-admin-panel li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(135deg, #0070f0 0%, #33c3f0 100%);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-links-admin-panel li a:hover {
+    color: #0070f0;
+}
+
+.nav-links-admin-panel li a:hover::after {
+    width: 100%;
+}
+
+.nav-actions-admin-panel {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.admin-content {
+    padding: 30px 50px;
+    box-sizing: border-box;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    margin: 0;
+
+    color: #333333;
+
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+
+/* Buttons container */
+
+.admin-actions {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.admin-button {
+    flex: 1;
+
+    padding: 14px 20px;
+
+    background-color: #ffffff;
+
+    border: 2px solid #0070f0;
+
+    border-radius: 12px;
+
+    color: #0070f0;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+
+.admin-button:hover {
+    background-color: #0070f0;
+    color: #ffffff;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .admin-panel {
+        padding: 20px;
+    }
+
+    .admin-content {
+        padding: 25px 20px;
+    }
+
+    .admin-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .admin-button {
+        width: 100%;
+    }
+}
