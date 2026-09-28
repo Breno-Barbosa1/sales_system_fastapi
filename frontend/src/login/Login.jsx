@@ -25,6 +25,7 @@ function Login() {
 
             localStorage.setItem("token", token)
             localStorage.setItem("employeeId", employeeId)
+            localStorage.setItem("userRole", data.role)
             navigate('/');
         } catch (error) {
             console.error('Error during login:', error);
