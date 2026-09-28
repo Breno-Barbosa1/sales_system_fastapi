@@ -7,7 +7,9 @@ function ProductEdit() {
     const [product, setProduct] = useState();
     const productId = window.location.pathname.split("/").pop();
     const token = localStorage.getItem("token");
+    const userRole = localStorage.getItem("userRole");
     const navigate = useNavigate();
+
     const fetchProduct = async () => {
         try {
             const response = await fetch(`http://127.0.0.1:8000/api/v1/products/${productId}`, {
@@ -45,6 +47,12 @@ function ProductEdit() {
             console.error("Error fetching product:", error);
         }
     }
+
+    useEffect(() => {
+        if (userRole !== "role_admin") {
+            navigate("/")
+        }
+    }, [userRole, navigate])
 
     useEffect(() => {
         if (!token) {

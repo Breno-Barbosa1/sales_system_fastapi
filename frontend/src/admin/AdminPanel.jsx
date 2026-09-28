@@ -1,14 +1,22 @@
 import "./AdminPanel.css";
 
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function AdminPanel() {
     const navigate = useNavigate();
+    const userRole = localStorage.getItem("userRole");
 
     const handleLogout = () => {
         localStorage.removeItem("token");
         navigate('/login');
     }
+
+    useEffect(() => {
+        if (userRole !== "role_admin") {
+            navigate('/');
+        }
+    }, [userRole, navigate]);
 
     return (
         <div className="admin-panel">

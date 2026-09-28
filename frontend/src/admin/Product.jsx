@@ -9,6 +9,7 @@ function Product() {
     const [totalPages, setTotalPages] = useState(1);
     const pageSize = 10;
     const token = localStorage.getItem("token");
+    const userRole = localStorage.getItem("userRole");
 
     const navigate = useNavigate();
 
@@ -18,6 +19,12 @@ function Product() {
             return;
         }
     })
+
+    useEffect(() => {
+        if (userRole !== "role_admin") {
+            navigate('/');
+        }
+    }, [userRole, navigate]);
 
     const editProduct = (productId) => {
         navigate(`/admin/products/edit/${productId}`);
