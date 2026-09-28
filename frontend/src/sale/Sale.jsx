@@ -20,7 +20,7 @@ function Sale() {
   }
 
   const removeItem = (productId) => {
-    setSaleItems((prevItems) => prevItems.filter((item) => item.id !== productId));
+    setSaleItems((prevItems) => prevItems.filter((item) => item.product_id !== productId));
   }
 
   const finishSale = async () => {
@@ -65,8 +65,9 @@ function Sale() {
               navigate("/login");
               return;
             }
-
+            
         const data = await response.json()
+        console
         setSearchedProducts(data.items)
     } catch (error) {
       console.log("Error while searching for a product. error: ", error)
@@ -82,6 +83,9 @@ function Sale() {
         <ul className="nav-links-sales">
             <li><a href="/products">Lista de Produtos</a> </li>
             <li><a href="/">Painel de Vendas</a></li>
+            {localStorage.getItem("userRole") === "role_admin" && (
+                <li><a href="/admin">Painel Administrativo</a></li>
+            )}
         </ul>
         <div className="nav-actions-sales">
             <button className="logout-btn" onClick={handleLogout}> Sair </button>
@@ -222,7 +226,7 @@ function Sale() {
                                             <td>R$ {item.price}</td>
                                             <td>{item.quantity}</td>
                                             <td>
-                                                <button className="delete-btn" onClick={() => removeItem(item.id)}>
+                                                <button className="delete-btn" onClick={() => removeItem(item.product_id)}>
                                                     Excluir
                                                 </button>
                                             </td>

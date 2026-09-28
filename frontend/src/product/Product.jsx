@@ -56,15 +56,11 @@ function Product() {
                     <h1>Sistema de Vendas</h1>
                 </div>
                 <ul className="nav-links-products">
-                    <li>
-                        <a href="/products">Lista de Produtos</a>
-                    </li>
-
-                    <li>
-                        <a href="/">Painel de Vendas</a>
-                    </li>
+                    <li><a href="/">Painel de Vendas</a></li>
+                    {localStorage.getItem("userRole") === "role_admin" && (
+                        <li><a href="/admin">Painel Administrativo</a></li>
+                    )}
                 </ul>
-
                 <div className="nav-actions-products">
                     <button
                         className="logout-btn"

@@ -34,7 +34,6 @@ function AdminPanel() {
                         Sair
                     </button>
                 </div>
-
             </nav>
             <div className="admin-content">
 

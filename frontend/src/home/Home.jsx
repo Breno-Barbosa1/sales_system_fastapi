@@ -59,8 +59,9 @@ function Home() {
                 </div>
                 <ul className="nav-links-home">
                     <li><a href="/products">Lista de Produtos</a></li>
-                    <li><a href="#vendas">Painel de Vendas</a></li>
-                    <li><a href="/admin">Painel Administrativo</a></li>
+                    {localStorage.getItem("userRole") === "role_admin" && (
+                        <li><a href="/admin">Painel Administrativo</a></li>
+                    )}
                 </ul>
                 
                 <div className="nav-actions-home">
