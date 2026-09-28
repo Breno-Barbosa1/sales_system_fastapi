@@ -63,7 +63,6 @@ function Product() {
                     <li>
                         <a href="/products">Lista de Produtos</a>
                     </li>
-
                     <li>
                         <a href="/">Painel de Vendas</a>
                     </li>

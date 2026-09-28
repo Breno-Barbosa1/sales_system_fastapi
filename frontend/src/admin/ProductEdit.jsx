@@ -40,6 +40,7 @@ function ProductEdit() {
 
             const data = await response.json();
             alert(`Produto atualizado com sucesso! ID: ${data.id}`)
+            navigate("/admin/products")
         } catch (error) {
             console.error("Error fetching product:", error);
         }
