@@ -126,11 +126,17 @@ Roadmap
 Planned improvements and unfinished functionality may include:
 
 Completing existing management features
+
 Improving sales management
+
 Expanding product management
+
 Expanding employee management
+
 Improving the admin panel
+
 Adding additional validation and error handling
+
 Improving the overall UI/UX
 
 
