@@ -32,5 +32,6 @@ class EmployeeResponse(BaseModel):
     cpf: str
     address: Address
     is_active: bool
+    role: str
 
     model_config = ConfigDict(from_attributes=True)
