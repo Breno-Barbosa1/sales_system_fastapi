@@ -86,7 +86,18 @@ def delete_sale(db: Session, sale_id: int):
     sale = db.query(Sale).filter(Sale.id == sale_id).first()
 
     if sale is None:
-        raise ValueError("Sale not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Venda não encontrada!"
+        )
+
+    for sale_item in sale.sale_items:
+        product = db.query(Product).filter(
+            Product.id == sale_item.product_id
+        ).first()
+
+        if product:
+            product.stock_quantity += sale_item.quantity
 
     db.delete(sale)
     db.commit()
