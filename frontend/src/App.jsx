@@ -10,7 +10,7 @@ import AdminProduct from './admin/Product.jsx'
 import AdminProductEdit from './admin/ProductEdit.jsx'
 import AdminPanel from './admin/AdminPanel.jsx'
 import AdminSale from './admin/Sale.jsx'
-
+import AdminEmployee from './admin/Employee.jsx'
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
           <Route path="/admin/products" element={<AdminProduct />} />
           <Route path="/admin/products/edit/:id" element={<AdminProductEdit />} />
           <Route path="/admin/sales" element={<AdminSale />} />
+          <Route path="/admin/employees" element={<AdminEmployee />} />
         </Routes>
       </BrowserRouter>
     </>
