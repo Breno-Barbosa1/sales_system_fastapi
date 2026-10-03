@@ -2,10 +2,10 @@ from pydantic import BaseModel, ConfigDict
 
 class Address(BaseModel):
     street: str
-    number: int
+    number: str
     city: str
     state: str
-    zip_code: int
+    zip_code: str
     complement: str
 
 class EmployeeCreate(BaseModel):

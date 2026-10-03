@@ -15,10 +15,10 @@ class Employee(Base):
     is_active = Column(Boolean, nullable=False, default=True)
 
     street = Column(String(50), nullable=False)
-    number = Column(Integer, nullable=False)
+    number = Column(String(10), nullable=False)
     city = Column(String(50), nullable=False)
     state = Column(String(2), nullable=False)
-    zip_code = Column(Integer, nullable=False)
+    zip_code = Column(String(8), nullable=False)
     complement = Column(String(50), nullable=False)
 
     def __repr__(self):
