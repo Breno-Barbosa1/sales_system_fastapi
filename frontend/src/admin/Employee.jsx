@@ -101,6 +101,12 @@ function Employee() {
                                 <th>CPF</th>
                                 <th>Função</th>
                                 <th>Ativo</th>
+                                <th>Rua</th>
+                                <th>Número</th>
+                                <th>Cidade</th>
+                                <th>Estado</th>
+                                <th>CEP</th>
+                                <th>Complemento</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -115,6 +121,12 @@ function Employee() {
                                         <td>{employee.cpf}</td>
                                         <td>{employee.role === 'role_admin' ? 'Administrador' : 'Funcionário'}</td>
                                         <td>{employee.is_active ? "Sim" : "Não"}</td>
+                                        <td>{employee.address.street}</td>
+                                        <td>{employee.address.number}</td>
+                                        <td>{employee.address.city}</td>
+                                        <td>{employee.address.state}</td>
+                                        <td>{employee.address.zip_code}</td>
+                                        <td>{employee.address.complement}</td>
                                         <td>
                                             <button className="edit-btn" onClick={() => navigate(`/admin/employees/edit/${employee.id}`)}>
                                                 Editar
