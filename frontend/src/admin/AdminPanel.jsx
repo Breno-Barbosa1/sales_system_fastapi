@@ -25,13 +25,8 @@ function AdminPanel() {
                     <h1>Sistema de Vendas</h1>
                 </div>
                 <ul className="nav-links-admin-panel">
-                    <li>
-                        <a href="/products">Lista de Produtos</a>
-                    </li>
-
-                    <li>
-                        <a href="/">Painel de Vendas</a>
-                    </li>
+                    <li><a href="/products">Lista de Produtos</a></li>
+                    <li><a href="/">Painel de Vendas</a></li>
                 </ul>
 
                 <div className="nav-actions-admin-panel">
@@ -63,6 +58,13 @@ function AdminPanel() {
                         onClick={() => navigate("/admin/sales")}
                     >
                         Gerenciar Vendas
+                    </button>
+
+                    <button
+                        className="admin-button"
+                        onClick={() => navigate("/admin/employees")}
+                    >
+                        Gerenciar Funcionários
                     </button>
 
                 </div>
