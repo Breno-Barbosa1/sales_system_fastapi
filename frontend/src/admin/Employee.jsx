@@ -116,7 +116,9 @@ function Employee() {
                                         <td>{employee.role === 'role_admin' ? 'Administrador' : 'Funcionário'}</td>
                                         <td>{employee.is_active ? "Sim" : "Não"}</td>
                                         <td>
-                                            <button className="edit-btn">Editar</button>
+                                            <button className="edit-btn" onClick={() => navigate(`/admin/employees/edit/${employee.id}`)}>
+                                                Editar
+                                            </button>
                                         </td>
                                     </tr>
                                 ))
