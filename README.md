@@ -1,145 +1,116 @@
-Sales System FastAPI
+# 🛒 Sales System FastAPI
 
-A work-in-progress sales management system built with React + JavaScript on the frontend and Python + FastAPI on the backend.
+A role-based sales management system built with **React** on the frontend and **FastAPI** on the backend. Employees can browse products and register sales, while administrators manage products, employees, and sales through a dedicated admin panel.
 
-The project provides different functionality depending on the user's role: employees can view products and register sales, while administrators have access to management features for products, employees, and sales.
+![Status](https://img.shields.io/badge/status-work%20in%20progress-yellow)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
-Status:
-Work in progress. Some features are still incomplete and may change as the project evolves.
+> ⚠️ **Work in progress.** This is a personal study project. Some features are incomplete, and the architecture may change as development continues.
 
+---
 
-Features
+## 📑 Table of Contents
 
-Employee
+- [Features](#-features)
+- [User Roles](#-user-roles)
+- [Pages](#-pages)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Roadmap](#-roadmap)
+- [License](#-license)
 
-Employees have access to the core sales functionality:
+---
 
-View the product list
-Create/register sales
-View the home page with daily sales information
+## ✨ Features
 
-Administrator
+### 👤 Employee
 
-Administrators have access to an admin panel with management options for:
+- View the product list
+- Create and register sales
+- View the home page with daily sales information
 
-Products — manage products
-Employees — manage employees
-Sales — manage and review sales
+### 🛡️ Administrator
 
-The admin panel currently provides three main management sections:
+Administrators have everything employees have, plus access to the admin panel:
 
+```text
 Admin Panel
-
 ├── Products Management
 ├── Employees Management
 └── Sales Management
+```
 
-Pages
+| Section | Description |
+|---|---|
+| **Products** | Add, edit, and manage the product catalog |
+| **Employees** | Manage employee accounts |
+| **Sales** | Review and manage registered sales |
 
-The application currently includes the following main pages:
+### ⚙️ General
 
-Home: Displays information about the day's sales.
+- **Role-based access control** with two roles
+- **Secure password hashing** using `pwdlib`
+- **Pagination** for handling large lists of data efficiently
 
-Products: Displays the available products.
+---
 
-Create Sale: Allows an employee to create/register a sale.
+## 🔐 User Roles
 
-Admin Panel: Provides administrators with access to product, employee, and sales management.
+| Role | Permissions |
+|---|---|
+| `role_employee` | View products and create sales |
+| `role_admin` | Full access: employee, product, and sales management |
 
+---
 
-User Roles
+## 📄 Pages
 
-The system currently has two user roles:
+| Page | Description | Access |
+|---|---|---|
+| **Home** | Displays the day's sales information | Employee, Admin |
+| **Products** | Lists the available products | Employee, Admin |
+| **Create Sale** | Registers a new sale | Employee, Admin |
+| **Admin Panel** | Product, employee, and sales management | Admin only |
 
-Role
+---
 
-Access
+## 🧰 Tech Stack
 
-role_employee
+| Layer | Technology |
+|---|---|
+| **Frontend** | React, JavaScript |
+| **Backend** | Python, FastAPI |
+| **Security** | pwdlib (password hashing) |
 
-View products and create sales
+---
 
-role_admin
+## 📁 Project Structure
 
-Employee, product, and sales management
-
-
-
-Tech Stack
-
-Frontend
-
-React
-JavaScript
-
-Backend
-
-Python
-FastAPI
-
-Security
-
-pwdlib — used for password hashing/encryption
-
-Other Features
-
-Pagination — used for handling lists of data and limiting the amount of information displayed or returned at once.
-
-
-Project Structure
-
-The project is divided into a frontend and backend:
-
+```text
 sales_system_fastapi/
+├── frontend/    # React + JavaScript application
+└── backend/     # Python + FastAPI application
+```
 
-├── frontend/
+> The exact structure may change as the project evolves.
 
-│   └── React + JavaScript application
+## 🗺️ Roadmap
 
-│
+- [ ] Complete existing management features
+- [ ] Improve sales management
+- [ ] Expand product management
+- [ ] Expand employee management
+- [ ] Improve the admin panel
+- [ ] Add additional validation and error handling
+- [ ] Improve overall UI/UX
+- [ ] Add setup and deployment documentation
 
-└── backend/
+---
 
-    └── Python + FastAPI application
+## 📜 License
 
-The exact structure may change as the project develops.
-
-
-Running the Project
-
-Setup and installation instructions will be added as the project is finalized.
-
-Backend: The backend is built with FastAPI and Python.
-
-Frontend: The frontend is built with React and JavaScript.
-
-
-Project Status
-
-This project is currently under development and is being used as a study project.
-
-Some functionality is still incomplete, and the application architecture and features may change as development continues.
-
-
-Roadmap
-
-Planned improvements and unfinished functionality may include:
-
-Completing existing management features
-
-Improving sales management
-
-Expanding product management
-
-Expanding employee management
-
-Improving the admin panel
-
-Adding additional validation and error handling
-
-Improving the overall UI/UX
-
-
-License
-
-This project is currently a personal study project.
+This project is currently a personal study project and does not have a license yet.
