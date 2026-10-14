@@ -1,13 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ---------- Tokens ---------- */
 .admin-panel {
+    --bg: #0d1117;
+    --surface: #151b23;
+    --surface-2: #1b222c;
+    --surface-hover: #1f2733;
+    --border: #262e3a;
+    --border-strong: #364152;
+    --text: #e6eaf0;
+    --text-muted: #8a94a6;
+    --accent: #4c9aff;
+    --accent-ring: rgba(76, 154, 255, 0.25);
+
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    right: 0;
     min-height: 100vh;
-    background-color: #f0f4f8; 
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
+/* ---------- Navbar ---------- */
+.nav-bar-admin-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 40px;
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-sizing: border-box;
+    width: 100%;
+}
 
 .logo {
     flex: 1;
@@ -17,23 +44,10 @@
 
 .logo h1 {
     margin: 0;
-    font-size: 1.8rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #0070f0 0%, #33c3f0 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.nav-bar-admin-panel {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 50px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 15px rgba(0, 112, 240, 0.08);
-    box-sizing: border-box;
-    width: 100%;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #e6eaf0;
 }
 
 .nav-links-admin-panel {
@@ -41,39 +55,25 @@
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 8px;
     margin: 0;
     padding: 0;
 }
 
 .nav-links-admin-panel li a {
+    display: block;
     text-decoration: none;
-    color: #333333;
-    font-size: 1.05rem;
-    font-weight: 600;
-    transition: color 0.3s ease;
-    position: relative;
-    padding-bottom: 5px;
-}
-
-.nav-links-admin-panel li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: linear-gradient(135deg, #0070f0 0%, #33c3f0 100%);
-    transition: width 0.3s ease;
-    border-radius: 2px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 .nav-links-admin-panel li a:hover {
-    color: #0070f0;
-}
-
-.nav-links-admin-panel li a:hover::after {
-    width: 100%;
+    color: var(--text);
+    background-color: var(--surface-2);
 }
 
 .nav-actions-admin-panel {
@@ -82,82 +82,141 @@
     justify-content: flex-end;
 }
 
+/* ---------- Botão de sair ---------- */
+.logout-btn {
+    padding: 8px 18px;
+    background-color: transparent;
+    border: 1px solid #262e3a;
+    border-radius: 8px;
+    color: #e6eaf0;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.logout-btn:hover {
+    background-color: #1b222c;
+    border-color: #364152;
+}
+
+/* ---------- Conteúdo ---------- */
 .admin-content {
-    padding: 30px 50px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 40px;
     box-sizing: border-box;
 }
 
 .admin-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
+    text-align: center;
+    margin-bottom: 28px;
 }
 
 .admin-header h1 {
     margin: 0;
-
-    color: #333333;
-
-    font-size: 1.6rem;
-    font-weight: 700;
+    color: var(--text);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
 }
 
-
-/* Buttons container */
-
+/* ---------- Atalhos de gerenciamento ---------- */
 .admin-actions {
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
     width: 100%;
 }
 
-.admin-button {
-    flex: 1;
-
-    padding: 14px 20px;
-
-    background-color: #ffffff;
-
-    border: 2px solid #0070f0;
-
+/* Seletor específico para não ser sobrescrito por estilos globais */
+.admin-panel .admin-actions .admin-button {
+    box-sizing: border-box;
+    margin: 0;
+    min-height: 64px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    background: var(--surface);
+    background-image: none;
+    border: 1px solid var(--border);
     border-radius: 12px;
-
-    color: #0070f0;
-
-    font-size: 1rem;
-    font-weight: 700;
-
+    box-shadow: none;
+    transform: none;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.3;
     cursor: pointer;
-
-    transition: all 0.2s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
-
-.admin-button:hover {
-    background-color: #0070f0;
-    color: #ffffff;
+.admin-panel .admin-actions .admin-button:hover {
+    background: var(--surface-hover);
+    background-image: none;
+    border-color: var(--accent);
+    color: var(--text);
+    box-shadow: none;
+    transform: none;
 }
 
+/* ---------- Acessibilidade ---------- */
+.admin-panel a:focus-visible,
+.admin-panel button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
 
-/* Mobile */
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+    .admin-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-panel .admin-actions .admin-button {
+        min-height: 56px;
+    }
+}
 
 @media (max-width: 768px) {
+    .nav-bar-admin-panel {
+        padding: 12px 20px;
+    }
 
-    .admin-panel {
-        padding: 20px;
+    .logo {
+        flex: auto;
+    }
+
+    .logo h1 {
+        font-size: 1rem;
+    }
+
+    .nav-links-admin-panel {
+        flex: auto;
+        gap: 2px;
+    }
+
+    .nav-links-admin-panel li a {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+
+    .nav-actions-admin-panel {
+        flex: auto;
+    }
+
+    .logout-btn {
+        padding: 6px 14px;
     }
 
     .admin-content {
-        padding: 25px 20px;
-    }
-
-    .admin-actions {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .admin-button {
-        width: 100%;
+        padding: 24px 16px;
     }
 }
