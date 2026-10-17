@@ -1,11 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* ---------- Tokens ---------- */
 .products-card {
+    --bg: #0d1117;
+    --surface: #151b23;
+    --surface-2: #1b222c;
+    --surface-hover: #1f2733;
+    --border: #262e3a;
+    --border-strong: #364152;
+    --text: #e6eaf0;
+    --text-muted: #8a94a6;
+    --accent: #4c9aff;
+    --accent-soft: rgba(76, 154, 255, 0.12);
+
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
+    right: 0;
     min-height: 100vh;
-    background-color: #f0f4f8; 
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Navbar ---------- */
+.nav-bar-products {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 40px;
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border);
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .logo {
@@ -16,23 +44,10 @@
 
 .logo h1 {
     margin: 0;
-    font-size: 1.8rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #0070f0 0%, #33c3f0 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.nav-bar-products {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 50px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 15px rgba(0, 112, 240, 0.08);
-    box-sizing: border-box;
-    width: 100%;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #e6eaf0;
 }
 
 .nav-links-products {
@@ -40,39 +55,25 @@
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 8px;
     margin: 0;
     padding: 0;
 }
 
 .nav-links-products li a {
+    display: block;
     text-decoration: none;
-    color: #333333;
-    font-size: 1.05rem;
-    font-weight: 600;
-    transition: color 0.3s ease;
-    position: relative;
-    padding-bottom: 5px;
-}
-
-.nav-links-products li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: linear-gradient(135deg, #0070f0 0%, #33c3f0 100%);
-    transition: width 0.3s ease;
-    border-radius: 2px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: color 0.15s ease, background-color 0.15s ease;
 }
 
 .nav-links-products li a:hover {
-    color: #0070f0;
-}
-
-.nav-links-products li a:hover::after {
-    width: 100%;
+    color: var(--text);
+    background-color: var(--surface-2);
 }
 
 .nav-actions-products {
@@ -81,119 +82,250 @@
     justify-content: flex-end;
 }
 
+/* ---------- Botão de sair ---------- */
+.logout-btn {
+    padding: 8px 18px;
+    background-color: transparent;
+    border: 1px solid #262e3a;
+    border-radius: 8px;
+    color: #e6eaf0;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.logout-btn:hover {
+    background-color: #1b222c;
+    border-color: #364152;
+}
+
+/* ---------- Conteúdo ---------- */
 .products-dashboard {
-    padding: 40px 50px;
+    padding: 40px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
 }
 
 .products-dashboard-content {
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 16px;
-    box-shadow: 0 4px 15px rgba(0, 112, 240, 0.05);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
     width: 100%;
     max-width: 1300px;
     box-sizing: border-box;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+}
+
+.products-card .product-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 24px;
 }
 
 .products-dashboard-content h2 {
-    margin-top: 0;
-    margin-bottom: 25px;
-    color: #333333;
-    font-size: 1.6rem;
+    margin: 0 0 4px;
+    color: var(--text);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
 }
 
+.products-card .product-dashboard-header p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+/* ---------- Tabela ---------- */
 .products-table {
     width: 100%;
     border-collapse: collapse;
 }
 
 .products-table th {
-    background-color: #f8fafc;
-    color: #0070f0;
-    font-weight: bold;
+    background-color: transparent;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 0.82rem;
     text-align: left;
-    padding: 14px 20px;
-    border-bottom: 2px solid #e2e8f0;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
 }
 
 .products-table td {
-    padding: 16px 20px;
+    padding: 14px 16px;
     text-align: left;
-    border-bottom: 1px solid #edf2f7;
-    color: #4a5568;
-    font-size: 0.95rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.92rem;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ID mais discreto */
+.products-table td:first-child {
+    color: var(--text-muted);
+}
+
+.products-table td.product-name {
+    font-weight: 500;
 }
 
 .products-table tbody tr {
-    transition: background-color 0.2s ease;
+    transition: background-color 0.15s ease;
 }
 
 .products-table tbody tr:hover {
-    background-color: #f0f7ff;
+    background-color: var(--surface-hover);
 }
 
-.logout-btn {
-    padding: 10px 24px;
-    background-color: transparent;
-    border: 2px solid #0070f0;
-    border-radius: 12px;
-    color: #0070f0;
-    font-size: 1rem;
-    font-weight: bold;
+.products-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Linha de "nenhum produto encontrado" */
+.products-table td[colspan] {
+    padding: 48px 16px;
+    color: var(--text-muted);
+}
+
+/* ---------- Quantidade em estoque ---------- */
+.products-card .stock-badge {
+    display: inline-block;
+    min-width: 32px;
+    padding: 3px 10px;
+    background-color: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* ---------- Botão de editar ---------- */
+.products-card .edit-btn {
+    padding: 6px 14px;
+    background-color: var(--accent-soft);
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    box-shadow: none;
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-.logout-btn:hover {
-    background: linear-gradient(135deg, #0070f0 0%, #33c3f0 100%);
-    color: #ffffff;
-    border-color: transparent;
-    box-shadow: 0 8px 20px rgba(51, 195, 240, 0.3);
-    transform: translateY(-2px);
+.products-card .edit-btn:hover {
+    background-color: var(--accent);
+    color: #0d1117;
 }
 
-.logout-btn:active {
-    transform: translateY(0);
+/* ---------- Paginação ---------- */
+.products-card .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
 }
 
+.products-card .pagination-btn {
+    padding: 8px 16px;
+    background-color: var(--surface-2);
+    background-image: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: none;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.products-card .pagination-btn:hover:not(:disabled) {
+    background-color: var(--surface-hover);
+    border-color: var(--accent);
+}
+
+.products-card .pagination-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.products-card .pagination-info {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Acessibilidade ---------- */
+.products-card a:focus-visible,
+.products-card button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ---------- Responsivo ---------- */
 @media (max-width: 768px) {
-    .products-dashboard {
-        padding: 20px;
-    }
-    .products-dashboard-content {
-        padding: 20px;
-        overflow-x: auto;
-    }
-    .products-table th, 
-    .products-table td {
-        padding: 12px 15px;
-    }
     .nav-bar-products {
-        padding: 15px 20px;
+        padding: 12px 20px;
     }
+
     .logo {
         flex: auto;
     }
+
     .logo h1 {
-        font-size: 1.4rem;
+        font-size: 1rem;
     }
+
     .nav-links-products {
         flex: auto;
-        gap: 15px;
+        gap: 2px;
     }
+
     .nav-links-products li a {
-        font-size: 0.95rem;
+        font-size: 0.85rem;
+        padding: 6px 10px;
     }
+
     .nav-actions-products {
         flex: auto;
     }
+
     .logout-btn {
-        padding: 8px 16px;
+        padding: 6px 14px;
+    }
+
+    .products-dashboard {
+        padding: 16px;
+    }
+
+    .products-dashboard-content {
+        padding: 18px;
+    }
+
+    .products-table th,
+    .products-table td {
+        padding: 12px;
+    }
+
+    .products-card .pagination {
+        gap: 10px;
     }
 }
