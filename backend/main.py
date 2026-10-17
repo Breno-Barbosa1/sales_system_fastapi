@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_pagination import add_pagination
 from sqlalchemy.orm import Session
+import os
 
 from app.database import Base, engine
 from app.routers import employee_router, product_router, sale_router, login_router
@@ -19,7 +20,7 @@ def create_default_admin(db: Session):
         new_admin = Employee(
             first_name="Admin",
             last_name="User",
-            password=hash_password("admin123"),
+            password=hash_password(os.getenv("DEFAULT_ADMIN_PASSWORD")),
             email="admin@mail.com",
             cpf="00000000000",
             role=EmployeeRole.ADMIN.value,
