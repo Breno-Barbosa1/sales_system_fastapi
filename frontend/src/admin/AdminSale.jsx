@@ -1,9 +1,9 @@
-import "./Sale.css";
+import "./AdminSale.css";
 
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Sale() {
+function AdminSale() {
     const [salesData, setSalesData] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -181,4 +181,4 @@ function Sale() {
     );
 }
 
-export default Sale
+export default AdminSale
