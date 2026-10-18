@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
  
-/* ---------- Tokens ---------- */
 .admin-employees-card {
     --bg: #0d1117;
     --surface: #151b23;
@@ -25,7 +24,6 @@
     -webkit-font-smoothing: antialiased;
 }
  
-/* ---------- Navbar ---------- */
 .nav-bar-admin-employees {
     display: flex;
     justify-content: space-between;
@@ -35,20 +33,6 @@
     border-bottom: 1px solid var(--border);
     box-sizing: border-box;
     width: 100%;
-}
- 
-.logo {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-}
- 
-.logo h1 {
-    margin: 0;
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--text);
 }
  
 .nav-links-admin-employees {
