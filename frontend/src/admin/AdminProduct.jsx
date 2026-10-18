@@ -10,6 +10,7 @@ function Product() {
     const pageSize = 10;
     const token = localStorage.getItem("token");
     const userRole = localStorage.getItem("userRole");
+    const [searchQuery, setSearchQuery] = useState("")
 
     const navigate = useNavigate();
 
@@ -93,6 +94,17 @@ function Product() {
                             <h2>Painel de Produtos</h2>
                             <p> Controle de Estoque e Produtos</p>
                         </div>
+                        <div className="product-search">
+                        <input
+                            type="text"
+                            placeholder="Buscar produto..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        <button className="search-btn">
+                            Pesquisar
+                        </button>
+                    </div>
                     </div>
 
                     <table className="products-table">
