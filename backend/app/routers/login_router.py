@@ -7,7 +7,11 @@ from app.schemas.auth import TokenResponse, LoginRequest
 from app.security import verify_password
 from app.auth.jwt import create_access_token
 
+import logging
+
 router = APIRouter(prefix="/api/v1/auth", tags=["login"])
+
+logger = logging.getLogger(__name__)
 
 @router.post("/login", response_model=TokenResponse)
 def login(login_data: LoginRequest, db: Session = Depends(get_db)):
@@ -15,15 +19,19 @@ def login(login_data: LoginRequest, db: Session = Depends(get_db)):
     employee = get_employee_by_email(db, login_data.email)
 
     if not employee:
+        logger.warning("Employee not found!")
         raise HTTPException(
             status_code=401,
             detail="Invalid email or password"
         )
 
-    if not verify_password(
-            login_data.password,
-            employee.password
-    ):
+    password_valid = verify_password(
+        login_data.password,
+        employee.password
+    )
+
+    if not password_valid:
+        logger.warning("Login failed: password verification failed")
         raise HTTPException(
             status_code=401,
             detail="Invalid email or password"
