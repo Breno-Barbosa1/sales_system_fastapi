@@ -57,6 +57,34 @@ function Product() {
         }
     }
 
+    const searchProducts = async (e) => {
+        e.preventDefault();
+
+      if (!searchQuery.trim()) {
+          alert("Digite o nome do produto para pesquisar.");
+          return;
+      }
+      
+      try {
+          const response = await fetch(`http://127.0.0.1:8000/api/v1/products/search/${encodeURIComponent(searchQuery)}?page=${page}&size=${pageSize}`, {
+            method: "GET",
+            headers: {"Content-Type": "application/json", "Authorization": `Bearer ${token}`},
+        })
+
+        if (response.status === 401) {
+              localStorage.removeItem("token");
+              navigate("/login");
+              return;
+            }
+            
+        const data = await response.json()
+        setProducts(data.items)
+        } catch (error) {
+        console.log("Error while searching for a product. error: ", error)
+        }
+    }
+
+
     useEffect(() => {
         fetchProducts();
     }, [page, navigate]);
@@ -101,8 +129,14 @@ function Product() {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
-                        <button className="search-btn">
+                        <button className="search-btn" onClick={searchProducts}>
                             Pesquisar
+                        </button>
+                        <button className="reset-btn" onClick={() => {
+                                setSearchQuery("")
+                                fetchProducts() 
+                            }}>
+                            Restaurar
                         </button>
                     </div>
                     </div>
