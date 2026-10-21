@@ -67,7 +67,6 @@ function Sale() {
             }
             
         const data = await response.json()
-        console
         setSearchedProducts(data.items)
     } catch (error) {
       console.log("Error while searching for a product. error: ", error)
